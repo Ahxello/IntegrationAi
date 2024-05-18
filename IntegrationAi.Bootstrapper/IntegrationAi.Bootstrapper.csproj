@@ -1,9 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IntegrationAi.Domain\IntegrationAi.Domain.csproj" />
+    <ProjectReference Include="..\IntegrationAi.Infrastructure\IntegrationAi.Infrastructure.csproj" />
+    <ProjectReference Include="..\IntegrationAi.ViewModels\IntegrationAi.ViewModels.csproj" />
+    <ProjectReference Include="..\IntegrationAi.Views\IntegrationAi.Views.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IntegrationAi.Domain\IntegrationAi.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
