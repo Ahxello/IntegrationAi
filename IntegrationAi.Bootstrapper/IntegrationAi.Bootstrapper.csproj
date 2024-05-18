@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\IntegrationAi.Domain\IntegrationAi.Domain.csproj" />
     <ProjectReference Include="..\IntegrationAi.Infrastructure\IntegrationAi.Infrastructure.csproj" />
     <ProjectReference Include="..\IntegrationAi.ViewModels\IntegrationAi.ViewModels.csproj" />
