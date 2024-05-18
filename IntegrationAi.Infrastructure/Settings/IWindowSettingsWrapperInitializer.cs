@@ -1,6 +1,6 @@
 ﻿namespace IntegrationAi.Infrastructure.Settings;
 
-public interface IMainWindowSettingsWrapperInitializer
+public interface IWindowSettingsWrapperInitializer
 {
     void Initialize();
 }

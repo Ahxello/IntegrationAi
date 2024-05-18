@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using IntegrationAi.Domain.Settings;
+using IntegrationAi.Infrastructure.Common;
 using IntegrationAi.Infrastructure.Settings;
 
 namespace IntegrationAi.Infrastructure;
@@ -12,7 +13,10 @@ public class RegistrationModule : Module
 
         builder.RegisterType<MainWindowSettingsWrapper>()
             .As<IMainWindowSettingsWrapper>()
-            .As<IMainWindowSettingsWrapperInitializer>()
+            .As<IWindowSettingsWrapperInitializer>()
             .SingleInstance();
+        builder.RegisterType<PathService>()
+            .As<IPathService>()
+            .As<IPathServiceInitializer>().SingleInstance();
     }
 }

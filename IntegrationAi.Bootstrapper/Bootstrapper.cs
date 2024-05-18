@@ -1,10 +1,9 @@
 ﻿using System.Windows;
 using Autofac;
+using IntegrationAi.Infrastructure.Common;
 using IntegrationAi.Infrastructure.Settings;
-using IntegrationAi.ViewModels;
 using IntegrationAi.ViewModels.MainWindow;
 using IntegrationAi.ViewModels.Windows;
-using IntegrationAi.Views.MainWindow;
 
 namespace IntegrationAi.Bootstrapper;
 
@@ -22,12 +21,6 @@ public class Bootstrapper : IDisposable
             .RegisterModule<RegistrationModule>();
         _container = containerBuilder.Build();
     }
-
-    public void Dispose()
-    {
-        _container.Dispose();
-    }
-
     public Window Run()
     {
         InitializeDependencies();
@@ -46,6 +39,17 @@ public class Bootstrapper : IDisposable
 
     private void InitializeDependencies()
     {
-        _container.Resolve<IMainWindowSettingsWrapperInitializer>().Initialize();
+        _container.Resolve<IPathServiceInitializer>().Initialize();
+        var windowSettingsWrapperInitializers =
+            _container.Resolve<IEnumerable<IWindowSettingsWrapperInitializer>>();
+
+        foreach (var windowSettingsWrapperInitializer in windowSettingsWrapperInitializers)
+            windowSettingsWrapperInitializer.Initialize();
     }
+
+    public void Dispose()
+    {
+        _container.Dispose();
+    }
+
 }
