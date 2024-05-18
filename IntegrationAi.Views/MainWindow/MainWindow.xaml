@@ -15,6 +15,9 @@
         WindowState="{Binding isMaximized, Mode=TwoWay, Converter={x:Static converters:BoolToWindowStateConverter.Instance}}"
         d:DataContext="{d:DesignInstance mainWindow:MainWindowViewModel}">
     <Grid>
-
+        <Button Content="Close Main Window"
+                Command="{Binding CloseMainWindowCommand}"
+                Width="120"
+                Height="21"/>
     </Grid>
 </Window>

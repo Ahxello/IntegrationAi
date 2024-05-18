@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using IntegrationAi.ViewModels.Windows;
 using IntegrationAi.Views.MainWindow;
+using IntegrationAi.Views.Windows;
 
 namespace IntegrationAi.Views;
 
@@ -10,5 +12,7 @@ public class RegistrationModule : Module
         base.Load(builder);
         builder.RegisterType<MainWindow.MainWindow>()
             .As<IMainWindow>().InstancePerDependency();
+        builder.RegisterType<WindowManager>()
+            .As<IWindowManager>().SingleInstance();
     }
 }

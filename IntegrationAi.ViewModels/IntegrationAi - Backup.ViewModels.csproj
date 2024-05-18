@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Windows\" />
+    <Folder Include="Новая папка\" />
   </ItemGroup>
 
 </Project>

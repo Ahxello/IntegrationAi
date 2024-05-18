@@ -1,5 +1,8 @@
-﻿namespace IntegrationAi.Views.MainWindow;
+﻿using IntegrationAi.ViewModels.Windows;
 
-public interface IMainWindow
+namespace IntegrationAi.Views.MainWindow;
+
+public interface IMainWindow : IWindow
 {
+
 }

@@ -1,14 +1,23 @@
-﻿using IntegrationAi.Domain.Settings;
+﻿using System.Windows.Input;
+using IntegrationAi.Domain.Settings;
+using IntegrationAi.ViewModels.Commands;
+using IntegrationAi.ViewModels.Windows;
 
 namespace IntegrationAi.ViewModels.MainWindow;
 
 public class MainWindowViewModel : IMainWindowViewModel
 {
     private readonly IMainWindowSettingsWrapper _mainWindowSettingsWrapper;
+    private readonly IWindowManager _windowManager;
+    private readonly Command _closeMainWindowCommand;
 
-    public MainWindowViewModel(IMainWindowSettingsWrapper mainWindowSettingsWrapper)
+    public MainWindowViewModel(IMainWindowSettingsWrapper mainWindowSettingsWrapper, 
+        IWindowManager windowManager)
     {
         _mainWindowSettingsWrapper = mainWindowSettingsWrapper;
+        _windowManager = windowManager;
+
+        _closeMainWindowCommand = new Command(CloseMainWindow);
     }
 
     public double Left
@@ -42,4 +51,11 @@ public class MainWindowViewModel : IMainWindowViewModel
     }
 
     public string Title => "IntegrationAI";
+
+    public ICommand CloseMainWindowCommand => _closeMainWindowCommand;
+    
+    private void CloseMainWindow()
+    {
+        _windowManager.Close(this);
+    }
 }
