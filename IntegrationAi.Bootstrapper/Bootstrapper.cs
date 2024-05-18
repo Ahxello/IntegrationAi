@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Autofac;
+using IntegrationAi.Infrastructure.Settings;
 using IntegrationAi.ViewModels;
 using IntegrationAi.Views.MainWindow;
 
@@ -13,6 +14,7 @@ public class Bootstrapper : IDisposable
     {
         var containerBuilder = new ContainerBuilder();
         containerBuilder
+            .RegisterModule<Infrastructure.RegistrationModule>()
             .RegisterModule<Views.RegistrationModule>()
             .RegisterModule<RegistrationModule>();
         _container = containerBuilder.Build();
@@ -25,9 +27,19 @@ public class Bootstrapper : IDisposable
 
     public Window Run()
     {
+        InitializeDependencies();
+
         var mainWindow = _container.Resolve<IMainWindow>();
+
         if (mainWindow is not Window window) throw new NotImplementedException();
+
         window.Show();
+
         return window;
+    }
+
+    private void InitializeDependencies()
+    {
+        _container.Resolve<IMainWindowSettingsWrapperInitializer>().Initialize();
     }
 }
