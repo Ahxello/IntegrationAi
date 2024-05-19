@@ -18,8 +18,4 @@
     <ProjectReference Include="..\IntegrationAi.Views\IntegrationAi.Views.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
-
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Autofac;
+using IntegrationAi.Domain.Factories;
 using IntegrationAi.Infrastructure.Common;
 using IntegrationAi.Infrastructure.Settings;
 using IntegrationAi.ViewModels.MainWindow;
@@ -25,7 +26,9 @@ public class Bootstrapper : IDisposable
     {
         InitializeDependencies();
 
-        var mainWindowViewModel = _container.Resolve<IMainWindowViewModel>();
+        var mainWindowViewModelFactory = _container.Resolve<IFactory<IMainWindowViewModel>>();
+
+        var mainWindowViewModel = mainWindowViewModelFactory.Create();
 
         var windowManager = _container.Resolve<IWindowManager>();
 
