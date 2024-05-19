@@ -15,9 +15,23 @@
         WindowState="{Binding isMaximized, Mode=TwoWay, Converter={x:Static converters:BoolToWindowStateConverter.Instance}}"
         d:DataContext="{d:DesignInstance mainWindow:MainWindowViewModel}">
     <Grid>
-        <Button Content="Close Main Window"
-                Command="{Binding CloseMainWindowCommand}"
-                Width="120"
-                Height="21"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="Load File" Command="{Binding}"></MenuItem>
+            <MenuItem Header="Ai Query">
+                <MenuItem Header="Add 10 words for list" Command="{Binding}"></MenuItem>
+                <MenuItem Header="Add 10 words for 1 word" Command="{Binding}"></MenuItem>
+                <MenuItem Header="Add Properties" Command="{Binding}"></MenuItem>
+
+            </MenuItem>
+        </Menu>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem Content="Version 0.0.1"></StatusBarItem>
+        </StatusBar>
+
     </Grid>
 </Window>

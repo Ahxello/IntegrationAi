@@ -3,7 +3,7 @@ using IntegrationAi.ViewModels.Windows;
 
 namespace IntegrationAi.ViewModels.MainWindow;
 
-public abstract class WindowViewModel<TWindowSettingsWrapper>
+public abstract class WindowViewModel<TWindowSettingsWrapper> : ViewModel, IWindowViewModel 
     where TWindowSettingsWrapper : class, IWindowSettingsWrapper
 {
     private readonly IWindowSettingsWrapper _windowSettingsWrapper;
