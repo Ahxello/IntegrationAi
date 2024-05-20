@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mainWindow="clr-namespace:IntegrationAi.ViewModels.MainWindow;assembly=IntegrationAi.ViewModels"
+                    xmlns:messages="clr-namespace:IntegrationAi.ViewModels.Messages;assembly=IntegrationAi.ViewModels">
+    <DataTemplate DataType="{x:Type mainWindow:MessageCollectionViewModel}">
+        <ListBox ItemsSource="{Binding Items}">
+
+        </ListBox>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type messages:MessageCollectionItemViewModel}">
+        <TextBlock>
+            <Run Text="{Binding Message, Mode=OneWay}"></Run>
+        </TextBlock>
+    </DataTemplate>
+</ResourceDictionary>

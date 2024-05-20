@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Autofac;
+using AiTestLibrary;
 using IntegrationAi.Domain.Factories;
 using IntegrationAi.Infrastructure.Common;
 using IntegrationAi.Infrastructure.Settings;

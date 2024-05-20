@@ -7,10 +7,8 @@ public abstract class ViewModel : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected void InvokePropertyChanged(string propertName)
+    protected void InvokePropertyChanged([CallerMemberName] string propertName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertName));
     }
-
-   
 }

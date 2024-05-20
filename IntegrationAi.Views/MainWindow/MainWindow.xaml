@@ -23,12 +23,14 @@
         <Menu Grid.Row="0">
             <MenuItem Header="Load File" Command="{Binding}"></MenuItem>
             <MenuItem Header="Ai Query">
-                <MenuItem Header="Add 10 words for list" Command="{Binding}"></MenuItem>
+                <MenuItem Header="Add 10 words for list" Command="{Binding }"></MenuItem>
                 <MenuItem Header="Add 10 words for 1 word" Command="{Binding}"></MenuItem>
-                <MenuItem Header="Add Properties" Command="{Binding}"></MenuItem>
+                <MenuItem Header="Add Properties" Command="{Binding OpenMessageCollectionCommand}"></MenuItem>
 
             </MenuItem>
         </Menu>
+        <ContentControl Grid.Row="1" Content="{Binding ContentViewModel}"/>
+        
         <StatusBar Grid.Row="2">
             <StatusBarItem Content="Version 0.0.1"></StatusBarItem>
         </StatusBar>

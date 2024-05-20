@@ -19,4 +19,10 @@
     <Folder Include="Factories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="AiTestLibrary">
+      <HintPath>..\..\AiTestLibrary\bin\Debug\net8.0\AiTestLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
