@@ -16,7 +16,8 @@ public class MainWindowViewModel : WindowViewModel<IMainWindowSettingsWrapper>, 
 
     public MainWindowViewModel(IMainWindowSettingsWrapper mainWindowSettingsWrapper,
         IWindowManager windowManager,
-        IFactory<IMessageCollectionViewModel> messageCollectionViewModelFactory) : base(mainWindowSettingsWrapper)
+        IFactory<IMessageCollectionViewModel> messageCollectionViewModelFactory) 
+        : base(mainWindowSettingsWrapper)
     {
         _windowManager = windowManager;
 

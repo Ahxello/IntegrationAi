@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿using AiTestLibrary.Classes;
+using AiTestLibrary.Interfaces;
+using Autofac;
 using IntegrationAi.Bootstrapper.Factories;
 using IntegrationAi.Domain.Factories;
 using IntegrationAi.Views.Factories;
@@ -16,5 +18,8 @@ public class RegistrationModule : Module
 
         builder.RegisterGeneric(typeof(Factory<>))
             .As(typeof(IFactory<>)).SingleInstance();
+
+        builder.RegisterType<YandexGpt>()
+            .As<IYandexGpt>().SingleInstance();
     }
 }

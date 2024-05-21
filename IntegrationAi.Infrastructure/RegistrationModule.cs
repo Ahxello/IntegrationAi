@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using AiTestLibrary.Classes;
+using AiTestLibrary.Interfaces;
+using Autofac;
+using IntegrationAi.Domain.Messages;
 using IntegrationAi.Domain.Settings;
 using IntegrationAi.Infrastructure.Common;
 using IntegrationAi.Infrastructure.Settings;
@@ -18,5 +21,6 @@ public class RegistrationModule : Module
         builder.RegisterType<PathService>()
             .As<IPathService>()
             .As<IPathServiceInitializer>().SingleInstance();
+        builder.RegisterType<ResponseParser>().As<IResponseParser>().SingleInstance();
     }
 }

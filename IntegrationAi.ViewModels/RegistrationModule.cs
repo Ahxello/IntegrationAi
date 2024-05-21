@@ -11,5 +11,6 @@ public class RegistrationModule : Module
         base.Load(builder);
         builder.RegisterViewModel<MainWindowViewModel, IMainWindowViewModel>();
         builder.RegisterViewModel<MessageCollectionViewModel, IMessageCollectionViewModel>();
+        
     }
 }
