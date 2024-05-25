@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
-            <MenuItem Header="Load File" Command="{Binding}"></MenuItem>
+            <MenuItem Header="Load File" Command="{Binding LoadFileCommand}"></MenuItem>
             <MenuItem Header="Ai Query">
                 <MenuItem Header="Add 10 words for list" Command="{Binding }"></MenuItem>
                 <MenuItem Header="Add 10 words for 1 word" Command="{Binding}"></MenuItem>

@@ -1,4 +1,5 @@
-﻿using IntegrationAi.Domain.Settings;
+﻿using System.IO;
+using IntegrationAi.Domain.Settings;
 using IntegrationAi.Infrastructure.Common;
 using Newtonsoft.Json;
 
