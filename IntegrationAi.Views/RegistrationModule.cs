@@ -1,6 +1,7 @@
 ﻿using Autofac;
-using IntegrationAi.ViewModels.Services;
+using IntegrationAi.Domain.Services;
 using IntegrationAi.ViewModels.Windows;
+using IntegrationAi.Views.InputWindow;
 using IntegrationAi.Views.MainWindow;
 using IntegrationAi.Views.Windows;
 
@@ -13,6 +14,8 @@ public class RegistrationModule : Module
         base.Load(builder);
         builder.RegisterType<MainWindow.MainWindow>()
             .As<IMainWindow>().InstancePerDependency();
+        builder.RegisterType<InputWindow.InputDialogWindow>()
+            .As<IInputDialogWindow>().InstancePerDependency();
         builder.RegisterType<WindowManager>()
             .As<IWindowManager>().SingleInstance();
         builder.RegisterType<DialogService>()

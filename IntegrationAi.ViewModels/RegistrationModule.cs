@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using IntegrationAi.ViewModels.Dialogs;
 using IntegrationAi.ViewModels.Extensions;
 using IntegrationAi.ViewModels.MainWindow;
 using IntegrationAi.ViewModels.Messages;
@@ -11,6 +12,7 @@ public class RegistrationModule : Module
     {
         base.Load(builder);
         builder.RegisterViewModel<MainWindowViewModel, IMainWindowViewModel>();
+        builder.RegisterViewModel<InputWindowViewModel, IInputWindowViewModel>();
         builder.RegisterViewModel<MessageCollectionViewModel, IMessageCollectionViewModel>();
         builder.RegisterViewModel<MainWindowMenuViewModel, IMainWindowMenuViewModel>();
 

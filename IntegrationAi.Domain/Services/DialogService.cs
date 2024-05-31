@@ -2,7 +2,7 @@
 using GemBox.Document;
 using Microsoft.Win32;
 
-namespace IntegrationAi.ViewModels.Services;
+namespace IntegrationAi.Domain.Services;
 
 public class DialogService : IDialogService
 {

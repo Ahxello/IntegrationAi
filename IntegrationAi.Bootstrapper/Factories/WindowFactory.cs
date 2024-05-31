@@ -1,7 +1,9 @@
 ﻿using Autofac;
+using IntegrationAi.ViewModels.Dialogs;
 using IntegrationAi.ViewModels.MainWindow;
 using IntegrationAi.ViewModels.Windows;
 using IntegrationAi.Views.Factories;
+using IntegrationAi.Views.InputWindow;
 using IntegrationAi.Views.MainWindow;
 
 namespace IntegrationAi.Bootstrapper.Factories;
@@ -12,7 +14,8 @@ public class WindowFactory : IWindowFactory
 
     private readonly Dictionary<Type, Type> _map = new()
     {
-        { typeof(IMainWindowViewModel), typeof(IMainWindow) }
+        { typeof(IMainWindowViewModel), typeof(IMainWindow) },
+        {typeof (IInputWindowViewModel), typeof(IInputDialogWindow)}
     };
 
     public WindowFactory(IComponentContext componentContext)

@@ -23,9 +23,9 @@
         <Menu Grid.Row="0">
             <MenuItem Header="Load File" Command="{Binding LoadFileCommand}"></MenuItem>
             <MenuItem Header="Ai Query">
-                <MenuItem Header="Add 10 words for list" Command="{Binding }"></MenuItem>
+                <MenuItem Header="Add 10 words for list" Command="{Binding OpenInputDialogCommand }"></MenuItem>
                 <MenuItem Header="Add 10 words for 1 word" Command="{Binding}"></MenuItem>
-                <MenuItem Header="Add Properties" Command="{Binding OpenMessageCollectionCommand}"></MenuItem>
+                <MenuItem Header="Add Properties" Command="{Binding AddPropetiesForMessageCollectionAsyncCommand}"></MenuItem>
 
             </MenuItem>
         </Menu>

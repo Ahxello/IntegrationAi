@@ -42,4 +42,8 @@ public abstract class WindowViewModel<TWindowSettingsWrapper> : ViewModel, IWind
         set => _windowSettingsWrapper.isMaximized = value;
     }
 
+    public virtual void WindowClosing()
+    {
+        
+    }
 }

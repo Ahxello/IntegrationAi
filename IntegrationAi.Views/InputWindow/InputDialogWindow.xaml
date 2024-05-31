@@ -1,0 +1,23 @@
+﻿<Window x:Class="IntegrationAi.Views.InputWindow.InputDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntegrationAi.Views.Windows"
+        xmlns:dialogs="clr-namespace:IntegrationAi.ViewModels.Dialogs;assembly=IntegrationAi.ViewModels"
+        mc:Ignorable="d"
+        Title="InputDialogWindow"
+        Left="{Binding Left, Mode=TwoWay}"
+        Top="{Binding Top, Mode=TwoWay}"
+        Height="{Binding Height, Mode=TwoWay}" 
+        Width="{Binding Width, Mode=TwoWay}"
+        WindowState="Normal"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="NoResize"
+        d:DataContext="{d:DesignInstance dialogs:InputWindowViewModel}">
+    <Grid>
+        <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+        <Button Content="Confirm" Command="{Binding InputSubmittedCommand}" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+    </Grid>
+
+</Window>

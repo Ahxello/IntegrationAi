@@ -18,6 +18,10 @@ public class RegistrationModule : Module
             .As<IMainWindowSettingsWrapper>()
             .As<IWindowSettingsWrapperInitializer>()
             .SingleInstance();
+        builder.RegisterType<InputWindowSettingsWrapper>()
+            .As<IInputWindowSettingsWrapper>()
+            .As<IWindowSettingsWrapperInitializer>()
+            .SingleInstance();
         builder.RegisterType<PathService>()
             .As<IPathService>()
             .As<IPathServiceInitializer>().SingleInstance();

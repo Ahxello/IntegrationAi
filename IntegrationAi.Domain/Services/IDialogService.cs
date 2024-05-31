@@ -1,4 +1,4 @@
-﻿namespace IntegrationAi.ViewModels.Services;
+﻿namespace IntegrationAi.Domain.Services;
 
 public interface IDialogService
 {
