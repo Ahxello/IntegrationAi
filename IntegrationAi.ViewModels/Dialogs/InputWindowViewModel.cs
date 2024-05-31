@@ -3,19 +3,26 @@ using System.Windows.Input;
 using IntegrationAi.Domain.Settings;
 using IntegrationAi.ViewModels.Commands;
 using IntegrationAi.ViewModels.MainWindow;
+using IntegrationAi.ViewModels.Windows;
 
 namespace IntegrationAi.ViewModels.Dialogs;
 
 public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>, IInputWindowViewModel
 {
-        public InputWindowViewModel(IInputWindowSettingsWrapper windowSettingsWrapper) : base(windowSettingsWrapper)
-    {
-        InputSubmittedCommand = new Command(OnInputSubmitted);
-    }
+    private readonly IWindowManager _windowManager;
     private string _userInput;
+    private readonly Command _inputSubmittedCommand;
+
+    public InputWindowViewModel(IInputWindowSettingsWrapper windowSettingsWrapper,
+        IWindowManager windowManager) : base(windowSettingsWrapper)
+    {
+        _windowManager = windowManager;
+        _inputSubmittedCommand = new Command(OnInputSubmitted);
+    }
+
     public string UserInput
     {
-        get { return _userInput; }
+        get => _userInput;
         set
         {
             _userInput = value;
@@ -23,7 +30,7 @@ public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>
         }
     }
 
-    public ICommand InputSubmittedCommand { get; }
+    public ICommand InputSubmittedCommand => _inputSubmittedCommand;
 
     public event Action<string> InputSubmitted;
 
@@ -32,12 +39,15 @@ public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>
     {
         InputSubmitted?.Invoke(UserInput);
     }
+    public override void WindowClosing()
+    {
+        _windowManager.Close(this);
+    }
+
     public event PropertyChangedEventHandler PropertyChanged;
 
     protected virtual void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
-
-
 }

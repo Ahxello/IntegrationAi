@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+    <Page Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="GigaChatSDK" Version="1.0.5" />
     <PackageReference Include="Google_GenerativeAI" Version="0.1.20" />
@@ -20,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

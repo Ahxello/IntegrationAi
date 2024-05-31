@@ -4,7 +4,10 @@ namespace IntegrationAi.ViewModels.MainWindow;
 
 public interface IMainWindowMenuViewModel
 {
-    ICommand CloseMainWindowCommand { get; }
+    ICommand OpenInputDialogCommand { get; }
+    ICommand LoadFileCommand { get; }
+    ICommand AddPropetiesForMessageCollectionAsyncCommand { get; }
+    void CloseInputWindow();
 
-    event Action? ContentViewModelChanged;
+    event Action<IMainWindowContentViewModel>? ContentViewModelChanged;
 }
