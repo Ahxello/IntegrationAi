@@ -6,5 +6,5 @@ public interface IMainWindowMenuViewModel
 {
     ICommand CloseMainWindowCommand { get; }
 
-    event Action? MainWindowClosingRequested;
+    event Action? ContentViewModelChanged;
 }

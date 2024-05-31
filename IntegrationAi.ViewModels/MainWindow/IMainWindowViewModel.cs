@@ -2,7 +2,7 @@
 
 namespace IntegrationAi.ViewModels.MainWindow;
 
-public interface IMainWindowViewModel : IWindowViewModel
+public interface IMainWindowViewModel : IWindowViewModel, IDisposable
 {
     
 }

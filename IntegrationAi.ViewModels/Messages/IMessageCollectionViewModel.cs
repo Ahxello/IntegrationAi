@@ -5,5 +5,8 @@ namespace IntegrationAi.ViewModels.Messages;
 public interface IMessageCollectionViewModel : IMainWindowContentViewModel
 {
     Task OpenFileDialog();
-    Task InitializeAsync();
+    Task InitializeAsync(List<string> items);
+
+    IEnumerable<MessageCollectionItemViewModel> Items { get; }
+
 }

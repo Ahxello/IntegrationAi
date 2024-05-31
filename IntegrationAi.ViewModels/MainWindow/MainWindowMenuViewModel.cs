@@ -8,15 +8,13 @@ public class MainWindowMenuViewModel : IMainWindowMenuViewModel
     public Command _closeMainWindowCommand;
     public MainWindowMenuViewModel()
     {
-        _closeMainWindowCommand = new Command(CloseMainWindow);
+        
     }
 
     public ICommand CloseMainWindowCommand => _closeMainWindowCommand;
+    public event Action? ContentViewModelChanged;
 
-    private void CloseMainWindow()
-    {
-        MainWindowClosingRequested?.Invoke();
-    }
 
-    public event Action? MainWindowClosingRequested;
+
+    public event Action<IMainWindowContentViewModel>? MainWindowClosingRequested;
 }

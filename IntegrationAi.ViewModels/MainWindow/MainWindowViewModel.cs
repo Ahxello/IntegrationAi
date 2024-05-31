@@ -37,7 +37,6 @@ public class MainWindowViewModel : WindowViewModel<IMainWindowSettingsWrapper>, 
 
         MenuViewModel = mainWindowMenuViewModelFactory.Create();
 
-        MenuViewModel.MainWindowClosingRequested += OnMainWindowClosingRequested;
     }
 
     public IMainWindowMenuViewModel MenuViewModel { get; }
@@ -57,11 +56,17 @@ public class MainWindowViewModel : WindowViewModel<IMainWindowSettingsWrapper>, 
         }
     }
 
+    private List<string> localContentList = new List<string>();
+
     private async Task OpenMessageCollectionAsync()
     {
         var messageCollectionViewModel = _messageCollectionViewModelFactory.Create();
-        await messageCollectionViewModel.InitializeAsync();
+        await messageCollectionViewModel.InitializeAsync(localContentList);
         ContentViewModel = messageCollectionViewModel;
+        foreach (var message in messageCollectionViewModel.Items)
+        {
+            localContentList = new List<string>{message.Message};
+        }
     }
 
     public ICommand LoadFileCommand => _loadFileCommand;
@@ -70,15 +75,22 @@ public class MainWindowViewModel : WindowViewModel<IMainWindowSettingsWrapper>, 
         var messageCollectionViewModel = _messageCollectionViewModelFactory.Create();
         await messageCollectionViewModel.OpenFileDialog();
         ContentViewModel = messageCollectionViewModel;
+        foreach (var message in messageCollectionViewModel.Items)
+        {
+            localContentList = new List<string> { message.Message };
+        }
     }
 
     private void OnMainWindowClosingRequested()
     {
         _windowManager.Close(this);
     }
-
+    private void OnContentViewModelChanged(IMainWindowContentViewModel contentViewModel)
+    {
+        ContentViewModel = contentViewModel;
+    }
     public void Dispose()
     {
-        MenuViewModel.MainWindowClosingRequested -= OnMainWindowClosingRequested;
+        MenuViewModel.ContentViewModelChanged -= OnMainWindowClosingRequested;
     }
 }
