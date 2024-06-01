@@ -6,7 +6,7 @@ internal class InputWindowSettings : WindowSettings
     {
         Left = 100;
         Top = 100;
-        Width = 300;
+        Width = 500;
         Height = 200;
         isMaximized = true;
     }

@@ -16,8 +16,11 @@
         ResizeMode="NoResize"
         d:DataContext="{d:DesignInstance dialogs:InputWindowViewModel}">
     <Grid>
-        <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
-        <Button Content="Confirm" Command="{Binding InputSubmittedCommand}" Margin="10" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <TextBox Text="{Binding UserInput, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Confirm" Command="{Binding ConfirmCommand}" Width="25" Height="15" Margin="5"/>
+            <Button Content="Cancel" Command="{Binding CancelCommand}" Width="25" Height="15" Margin="5"/>
+        </StackPanel>
     </Grid>
 
 </Window>

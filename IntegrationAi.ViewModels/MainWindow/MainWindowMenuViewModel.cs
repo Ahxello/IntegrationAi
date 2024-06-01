@@ -10,13 +10,14 @@ namespace IntegrationAi.ViewModels.MainWindow;
 
 public class MainWindowMenuViewModel : IMainWindowMenuViewModel
 {
-    private readonly IFactory<IMessageCollectionViewModel> _messageCollectionViewModelFactory;
+    private readonly AsyncCommand _addPropetiesForMessageCollectionAsyncCommand;
+    private readonly AsyncCommand _addRelatedEntitiesForMessageCollectionAsyncCommand;
     private readonly IFactory<IInputWindowViewModel> _inputWindowViewModelFactory;
+    private readonly AsyncCommand _loadFileCommand;
+    private readonly IFactory<IMessageCollectionViewModel> _messageCollectionViewModelFactory;
     private readonly Command _openInputDialogCommand;
     private readonly IWindowManager _windowManager;
     private IInputWindowViewModel? _inputWindowViewModel;
-    private readonly AsyncCommand _addPropetiesForMessageCollectionAsyncCommand;
-    private readonly AsyncCommand _loadFileCommand;
     private List<string> localContentList = new();
 
     public MainWindowMenuViewModel(IFactory<IInputWindowViewModel> inputWindowViewModelFactory,
@@ -35,13 +36,23 @@ public class MainWindowMenuViewModel : IMainWindowMenuViewModel
 
         _addPropetiesForMessageCollectionAsyncCommand = new AsyncCommand(AddPropetiesForMessageCollectionAsync);
 
+        _addRelatedEntitiesForMessageCollectionAsyncCommand =
+            new AsyncCommand(AddRelatedEntitiesForMessageCollectionAsync);
     }
+
+    public ICommand AddRelatedEntitiesForMessageCollectionAsyncCommand =>
+        _addRelatedEntitiesForMessageCollectionAsyncCommand;
 
     public ICommand LoadFileCommand => _loadFileCommand;
     public ICommand AddPropetiesForMessageCollectionAsyncCommand => _addPropetiesForMessageCollectionAsyncCommand;
-
     public ICommand OpenInputDialogCommand => _openInputDialogCommand;
+
     public event Action<IMainWindowContentViewModel>? ContentViewModelChanged;
+
+    public void CloseInputWindow()
+    {
+        if (_inputWindowViewModel != null) _windowManager.Close(_inputWindowViewModel);
+    }
 
     private void OpenInputDialog()
     {
@@ -66,13 +77,6 @@ public class MainWindowMenuViewModel : IMainWindowMenuViewModel
             _inputWindowViewModel = null;
         }
     }
-    public void CloseInputWindow()
-    {
-        if (_inputWindowViewModel != null)
-        {
-            _windowManager.Close(_inputWindowViewModel);
-        }
-    }
 
     private async Task AddPropetiesForMessageCollectionAsync()
     {
@@ -85,10 +89,9 @@ public class MainWindowMenuViewModel : IMainWindowMenuViewModel
 
     private async Task AddRelatedEntitiesForMessageCollectionAsync()
     {
-
         var messageCollectionViewModel = _messageCollectionViewModelFactory.Create();
-        
-        await messageCollectionViewModel.AddRelatedEntites(localContentList, _inputWindowViewModel.UserInput);
+
+        await messageCollectionViewModel.AddRelatedEntites(localContentList, "10");
 
         ContentViewModelChanged?.Invoke(messageCollectionViewModel);
 

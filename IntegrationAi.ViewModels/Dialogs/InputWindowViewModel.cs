@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
+using IntegrationAi.Domain.Factories;
 using IntegrationAi.Domain.Settings;
 using IntegrationAi.ViewModels.Commands;
 using IntegrationAi.ViewModels.MainWindow;
@@ -10,14 +11,23 @@ namespace IntegrationAi.ViewModels.Dialogs;
 public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>, IInputWindowViewModel
 {
     private readonly IWindowManager _windowManager;
+    private readonly IFactory<IMainWindowMenuViewModel> _mainWindowMenuViewModelFactory;
     private string _userInput;
-    private readonly Command _inputSubmittedCommand;
+    public IMainWindowMenuViewModel MenuViewModel { get; }
+    private readonly Command _confirmCommand;
+    private readonly Command _cancelCommand;
+
+    private bool? _dialogResult;
 
     public InputWindowViewModel(IInputWindowSettingsWrapper windowSettingsWrapper,
-        IWindowManager windowManager) : base(windowSettingsWrapper)
+        IWindowManager windowManager,
+        IFactory<IMainWindowMenuViewModel> mainWindowMenuViewModelFactory) : base(windowSettingsWrapper)
     {
+
         _windowManager = windowManager;
-        _inputSubmittedCommand = new Command(OnInputSubmitted);
+        _mainWindowMenuViewModelFactory = mainWindowMenuViewModelFactory;
+        _confirmCommand = new Command(Confirm);
+        _cancelCommand = new Command(Cancel);
     }
 
     public string UserInput
@@ -26,28 +36,37 @@ public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>
         set
         {
             _userInput = value;
-            OnPropertyChanged(nameof(UserInput));
+            InvokePropertyChanged();
         }
     }
 
-    public ICommand InputSubmittedCommand => _inputSubmittedCommand;
+    public ICommand ConfirmCommand => _confirmCommand;
+    public ICommand CancelCommand => _cancelCommand;
 
-    public event Action<string> InputSubmitted;
-
-
-    private void OnInputSubmitted()
+    public event EventHandler RequestClose;
+    public bool? DialogResult
     {
-        InputSubmitted?.Invoke(UserInput);
-    }
-    public override void WindowClosing()
-    {
-        _windowManager.Close(this);
+        get { return _dialogResult; }
+        set
+        {
+            _dialogResult = value;
+            InvokePropertyChanged();
+        }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
+    private void Confirm()
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        var menuViewModel = _mainWindowMenuViewModelFactory.Create();
+        
     }
+    private void Cancel()
+    {
+        DialogResult = false;
+        OnRequestClose();
+    }
+    protected virtual void OnRequestClose()
+    {
+        RequestClose?.Invoke(this, EventArgs.Empty);
+    }
+
 }

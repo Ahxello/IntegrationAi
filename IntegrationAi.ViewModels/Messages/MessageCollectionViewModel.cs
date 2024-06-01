@@ -23,10 +23,10 @@ public class MessageCollectionViewModel : IMessageCollectionViewModel
         _responseParser = responseParser;
     }
 
+    private string iamtoken =
+        "t1.9euelZqalc2ans7Gy8-ZnZjMzJvMyO3rnpWam46WzZKSlMaVjsycjZCZksjl8_cYLxRN-e84S0VL_t3z91hdEU357zhLRUv-zef1656VmpGMiZjHnsuOjZSQjpmYjsyY7_zF656VmpGMiZjHnsuOjZSQjpmYjsyY.KytXT0IQvmq_IiKsHK2uZ0AdqIv7RtYurLhgFbSCzl1xPhu0ocLZuCRPderwHAleadc3xdXuQL7yF50iy_YlCQ";
     public async Task AddPropeties(List<string> items)
     {
-        var iamtoken = "t1.9euelZqRmJfGjc6KkJGJzMaXzZiVkO3rnpWam46WzZKSlMaVjsycjZCZksjl8_dbERlN-e9fbjtW_d3z9xtAFk35719uO1b9zef1656VmpSYzp7HjsqSyZqajJ6QzpaV7_zF656VmpSYzp7HjsqSyZqajJ6QzpaV.YyQZChBrhUTJCmT82n5lxmxcqBx3F_JFYa8z2g0ZqWnTTTZ2NNcmxLqYHr1qw50qFpKkKjpTGxyW7npwJa5bAQ";
-
         var foledrId = "b1gphb1c693npe94nmrv";
 
         string result = string.Join(" ", items);
@@ -45,9 +45,6 @@ public class MessageCollectionViewModel : IMessageCollectionViewModel
 
     public async Task AddRelatedEntites(List<string> items, string userInput)
     {
-
-        var iamtoken = "t1.9euelZqRmJfGjc6KkJGJzMaXzZiVkO3rnpWam46WzZKSlMaVjsycjZCZksjl8_dbERlN-e9fbjtW_d3z9xtAFk35719uO1b9zef1656VmpSYzp7HjsqSyZqajJ6QzpaV7_zF656VmpSYzp7HjsqSyZqajJ6QzpaV.YyQZChBrhUTJCmT82n5lxmxcqBx3F_JFYa8z2g0ZqWnTTTZ2NNcmxLqYHr1qw50qFpKkKjpTGxyW7npwJa5bAQ";
-
         var foledrId = "b1gphb1c693npe94nmrv";
 
         string result = string.Join(" ", items);
@@ -66,9 +63,6 @@ public class MessageCollectionViewModel : IMessageCollectionViewModel
 
     public async Task InitializeAsync(List<string> items)
     {
-
-        var iamtoken = "t1.9euelZqRmJfGjc6KkJGJzMaXzZiVkO3rnpWam46WzZKSlMaVjsycjZCZksjl8_dbERlN-e9fbjtW_d3z9xtAFk35719uO1b9zef1656VmpSYzp7HjsqSyZqajJ6QzpaV7_zF656VmpSYzp7HjsqSyZqajJ6QzpaV.YyQZChBrhUTJCmT82n5lxmxcqBx3F_JFYa8z2g0ZqWnTTTZ2NNcmxLqYHr1qw50qFpKkKjpTGxyW7npwJa5bAQ";
-        
         var foledrId = "b1gphb1c693npe94nmrv";
         
         string result = string.Join(" ", items);

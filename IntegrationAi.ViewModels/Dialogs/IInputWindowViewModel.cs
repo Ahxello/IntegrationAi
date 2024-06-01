@@ -5,6 +5,9 @@ namespace IntegrationAi.ViewModels.Dialogs;
 
 public interface IInputWindowViewModel : IWindowViewModel
 {
-    ICommand InputSubmittedCommand { get; }
+    ICommand ConfirmCommand { get; }
+    ICommand CancelCommand { get; }
     string UserInput { get; set; }
+    bool? DialogResult { get; set; }
+
 }

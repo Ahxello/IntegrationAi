@@ -23,8 +23,7 @@
         <Menu Grid.Row="0">
             <MenuItem Header="Load File" Command="{Binding MenuViewModel.LoadFileCommand}"></MenuItem>
             <MenuItem Header="Ai Query">
-                <MenuItem Header="Add 10 words for list" Command="{Binding MenuViewModel.OpenInputDialogCommand }"></MenuItem>
-                <MenuItem Header="Add 10 words for 1 word" Command="{Binding}"></MenuItem>
+                <MenuItem Header="Add 10 words for list" Command="{Binding MenuViewModel.AddRelatedEntitiesForMessageCollectionAsyncCommand }"></MenuItem>
                 <MenuItem Header="Add Properties" Command="{Binding MenuViewModel.AddPropetiesForMessageCollectionAsyncCommand}"></MenuItem>
 
             </MenuItem>
