@@ -2,5 +2,5 @@
 
 public interface IResponseParser
 {
-    Task<string> GetMessageAsync(string json);
+    string[] GetMessageAsync(string json);
 }

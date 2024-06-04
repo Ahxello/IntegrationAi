@@ -25,8 +25,9 @@
             <MenuItem Header="Ai Query">
                 <MenuItem Header="Add 10 words for list" Command="{Binding MenuViewModel.AddRelatedEntitiesForMessageCollectionAsyncCommand }"></MenuItem>
                 <MenuItem Header="Add Properties" Command="{Binding MenuViewModel.AddPropetiesForMessageCollectionAsyncCommand}"></MenuItem>
-
+                
             </MenuItem>
+            <MenuItem Header="Add Item" Command="{Binding MenuViewModel.AddItemCommand}"></MenuItem>
         </Menu>
         <ContentControl Grid.Row="1" Content="{Binding ContentViewModel}"/>
         

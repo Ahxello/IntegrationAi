@@ -13,19 +13,14 @@ public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>
     private readonly IWindowManager _windowManager;
     private readonly IFactory<IMainWindowMenuViewModel> _mainWindowMenuViewModelFactory;
     private string _userInput;
-    public IMainWindowMenuViewModel MenuViewModel { get; }
     private readonly Command _confirmCommand;
     private readonly Command _cancelCommand;
 
-    private bool? _dialogResult;
-
     public InputWindowViewModel(IInputWindowSettingsWrapper windowSettingsWrapper,
-        IWindowManager windowManager,
-        IFactory<IMainWindowMenuViewModel> mainWindowMenuViewModelFactory) : base(windowSettingsWrapper)
+        IWindowManager windowManager) : base(windowSettingsWrapper)
     {
 
         _windowManager = windowManager;
-        _mainWindowMenuViewModelFactory = mainWindowMenuViewModelFactory;
         _confirmCommand = new Command(Confirm);
         _cancelCommand = new Command(Cancel);
     }
@@ -36,7 +31,7 @@ public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>
         set
         {
             _userInput = value;
-            InvokePropertyChanged();
+            InvokePropertyChanged(nameof(UserInput));
         }
     }
 
@@ -44,24 +39,13 @@ public class InputWindowViewModel : WindowViewModel<IInputWindowSettingsWrapper>
     public ICommand CancelCommand => _cancelCommand;
 
     public event EventHandler RequestClose;
-    public bool? DialogResult
-    {
-        get { return _dialogResult; }
-        set
-        {
-            _dialogResult = value;
-            InvokePropertyChanged();
-        }
-    }
 
     private void Confirm()
     {
-        var menuViewModel = _mainWindowMenuViewModelFactory.Create();
-        
+        RequestClose?.Invoke(this, EventArgs.Empty);
     }
     private void Cancel()
     {
-        DialogResult = false;
         OnRequestClose();
     }
     protected virtual void OnRequestClose()

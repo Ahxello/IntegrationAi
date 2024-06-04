@@ -22,13 +22,11 @@ public class MessageCollectionViewModel : IMessageCollectionViewModel
         _yandexGpt = yandexGpt;
         _responseParser = responseParser;
     }
-
+    private string foledrId = "b1gphb1c693npe94nmrv";
     private string iamtoken =
         "t1.9euelZqalc2ans7Gy8-ZnZjMzJvMyO3rnpWam46WzZKSlMaVjsycjZCZksjl8_cYLxRN-e84S0VL_t3z91hdEU357zhLRUv-zef1656VmpGMiZjHnsuOjZSQjpmYjsyY7_zF656VmpGMiZjHnsuOjZSQjpmYjsyY.KytXT0IQvmq_IiKsHK2uZ0AdqIv7RtYurLhgFbSCzl1xPhu0ocLZuCRPderwHAleadc3xdXuQL7yF50iy_YlCQ";
     public async Task AddPropeties(List<string> items)
     {
-        var foledrId = "b1gphb1c693npe94nmrv";
-
         string result = string.Join(" ", items);
 
         var messageCollection =
@@ -36,47 +34,64 @@ public class MessageCollectionViewModel : IMessageCollectionViewModel
                                      $"для дальнейшего внесения данных " +
                                      $"в БД с их типами данных"
                                      , iamtoken, foledrId);
-        var msg = _responseParser.GetMessageAsync(messageCollection);
+        var parsedMessage = _responseParser.GetMessageAsync(messageCollection);
 
-        var messageViewModel = new MessageCollectionItemViewModel(msg.Result);
+        var localList = new List<MessageCollectionItemViewModel>();
 
-        Items = new List<MessageCollectionItemViewModel> { messageViewModel };
+        foreach (var msg in parsedMessage)
+            localList.Add(new MessageCollectionItemViewModel(msg));
+
+        Items = localList;
     }
 
     public async Task AddRelatedEntites(List<string> items, string userInput)
     {
-        var foledrId = "b1gphb1c693npe94nmrv";
-
         string result = string.Join(" ", items);
 
         var messageCollection =
             await _yandexGpt.Request($"{result} Дай мне {userInput} сущностей, расширяющих мой список"
                 , iamtoken, foledrId);
+       
+        var parsedMessage = _responseParser.GetMessageAsync(messageCollection);
+        
+        var localList = new List<MessageCollectionItemViewModel>();
+        
+        foreach (var msg in parsedMessage)
+            localList.Add(new MessageCollectionItemViewModel(msg)); 
 
-        var msg = _responseParser.GetMessageAsync(messageCollection);
-
-        var messageViewModel = new MessageCollectionItemViewModel(msg.Result);
-
-        Items = new List<MessageCollectionItemViewModel> { messageViewModel };
+        Items = localList;
     }
 
 
     public async Task InitializeAsync(List<string> items)
     {
-        var foledrId = "b1gphb1c693npe94nmrv";
         
         string result = string.Join(" ", items);
 
         var messageCollection =
             await _yandexGpt.Request($"{result} Выбери из списка сущности и выведи их без описания.", iamtoken, foledrId );
-        
-        var msg = _responseParser.GetMessageAsync(messageCollection);
-        
-        var messageViewModel = new MessageCollectionItemViewModel(msg.Result);
-        
-        Items = new List<MessageCollectionItemViewModel> { messageViewModel };
+
+        var parsedMessage = _responseParser.GetMessageAsync(messageCollection);
+
+        var localList = new List<MessageCollectionItemViewModel>();
+
+        foreach (var msg in parsedMessage)
+            localList.Add(new MessageCollectionItemViewModel(msg));
+
+        Items = localList;
 
     }
+
+    public async Task AddMessage(List<string> items )
+    {
+        var localList = new List<MessageCollectionItemViewModel>();
+
+        foreach (var msg in items)
+            localList.Add(new MessageCollectionItemViewModel(msg));
+
+        Items = localList;
+    }
+
 
     public IEnumerable<MessageCollectionItemViewModel> Items { get; private set; }
         = Enumerable.Empty<MessageCollectionItemViewModel>();

@@ -8,6 +8,7 @@ public interface IMainWindowMenuViewModel
     ICommand OpenInputDialogCommand { get; }
     ICommand LoadFileCommand { get; }
     ICommand AddPropetiesForMessageCollectionAsyncCommand { get; }
+    ICommand AddItemCommand { get; }
     void CloseInputWindow();
 
     event Action<IMainWindowContentViewModel>? ContentViewModelChanged;

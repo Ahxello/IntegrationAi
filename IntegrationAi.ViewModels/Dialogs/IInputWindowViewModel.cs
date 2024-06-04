@@ -8,6 +8,7 @@ public interface IInputWindowViewModel : IWindowViewModel
     ICommand ConfirmCommand { get; }
     ICommand CancelCommand { get; }
     string UserInput { get; set; }
-    bool? DialogResult { get; set; }
+
+    event EventHandler RequestClose;
 
 }
